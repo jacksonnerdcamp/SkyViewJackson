@@ -2,7 +2,7 @@ public class SkyView {
     private int numRows;
     private int numColumns;
     private double[] scan;
-    private double[][] view;
+    double[][] view;
     //constructor
     public SkyView(int numRows, int numColumns, double[] scan)
     {
@@ -23,9 +23,18 @@ public class SkyView {
     }
 
     //methods
-    public int getAverage(int startRow, int endRow, int startColumn, int endColumn)
+    public double getAverage(int startRow, int endRow, int startColumn, int endColumn)
     {
-        int average = 0;
+        double average = 0;
+        int length = (endRow - startRow) * (endColumn - startColumn);
+        for(int j = startRow; j < endRow; j++)
+        {
+            for(int i = startColumn; i < this.numColumns; i++)
+            {
+                average += view[i][j];
+            }
+        }
+        average = average / length;
         return average;
     }
 }
